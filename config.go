@@ -20,20 +20,24 @@ type GraphiteConfig struct {
 }
 
 type PipeConfig struct {
-    Source DataSourceConfig
     Query string
     Dest string
-    Graphite GraphiteConfig
 }
 
-func LoadConfig(path string) []PipeConfig {
+type PiperConfig struct {
+    Source DataSourceConfig
+    Graphite GraphiteConfig
+    Pipes []PipeConfig 
+}
+
+func LoadConfig(path string) PiperConfig {
     data, err := ioutil.ReadFile(path)
 
     if err != nil {
         log.Fatalf("error: %v", err)
     }
 
-    config := []PipeConfig{}
+    config := PiperConfig{}
 
     err = yaml.Unmarshal([]byte(data), &config)
 

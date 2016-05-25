@@ -16,16 +16,16 @@ func main() {
 
     log.Print("Loaded config from ", *config_file)
 
-    for _, pipeConfig := range config {
-        executePipe(pipeConfig)
+    for _, pipe := range config.Pipes {
+        executePipe(pipe, config.Source, config.Graphite)
     }
 
 }
 
-func executePipe(config PipeConfig) {
+func executePipe(pipe PipeConfig, dataSource DataSourceConfig, graphite GraphiteConfig) {
 
-    log.Print("Executing query: ", config.Query)
-    value, err := Extract(config.Source, config.Query)
+    log.Print("Executing query: ", pipe.Query)
+    value, err := Extract(dataSource, pipe.Query)
 
     if err != nil {
         log.Fatal(err)
@@ -33,7 +33,7 @@ func executePipe(config PipeConfig) {
 
     log.Print("Loaded value: ", value)
 
-    err = Report(value, config.Dest, config.Graphite.Host, config.Graphite.Port)
+    err = Report(value, pipe.Dest, graphite.Host, graphite.Port)
 
     if err != nil {
         log.Fatal(err)
