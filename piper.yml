@@ -1,0 +1,23 @@
+---
+- source:
+    user: postgres
+    database: postgres
+    password: postgres
+    host: localhost
+    port: 5432
+  query: SELECT count(*) FROM bar
+  dest: piper.bar.count
+  graphite:
+    host: localhost
+    port: 2003
+- source:
+    user: postgres
+    database: postgres
+    password: postgres
+    host: localhost
+    port: 5432
+  query: SELECT id FROM bar order by id desc limit 1
+  dest: piper.bar.greatest_id
+  graphite:
+    host: localhost
+    port: 2003
