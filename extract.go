@@ -14,7 +14,7 @@ func Extract(source DataSourceConfig, query string) (float64, error){
 
     result := 0.0
 
-    db, err := sql.Open(source.Database, fmt.Sprintf("user=%v dbname=%v password=%v", source.User, source.Database, source.Password))
+    db, err := sql.Open("postgres", fmt.Sprintf("user=%v dbname=%v password=%v host=%v port=%v", source.User, source.Database, source.Password, source.Host, source.Port))
 
     if err != nil {
         log.Fatal(err)
