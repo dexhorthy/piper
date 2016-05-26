@@ -18,17 +18,18 @@ We create a config file named `piper_users.yml`, with contents:
 ```yaml
 # piper_users.yml
 ---
-- source:
-    user: postgres
-    database: postgres
-    password: postgres
-    host: localhost
-    port: 5432
-  query: SELECT count(*) FROM users
-  dest: users.count
-  graphite:
-    host: localhost
-    port: 2003
+source:
+  user: postgres
+  database: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+graphite:
+  host: localhost
+  port: 2003
+pipes:
+  - query: SELECT count(*) FROM users
+    dest: users.count
 ```
 
 
@@ -58,18 +59,22 @@ Configuration
 -------------
 
 Piper uses a yaml file for configuration.
-Contents are a list of `PipeConfig`s.
 
-At the top level each `PipeConfig` has four fields:
+At the top, configuration consists of:
 
 - `source` -- details for connecting to a database
-- `query` -- query to use to extract a single statistic from a database
-- `dest` -- destination path in graphite
 - `graphite` -- details for connecting to graphite
+- `pipes` -- list of `PipeConfig`
 
+Each `PipeConfig` contains
 
-You can specify any number of source/query/destination/graphite combinations in a single
+- `dest` -- destination stat in graphite
+- `query` -- query to use to extract a single statistic from a database
+
+You can specify any number of query/destination combinations in a single
 yaml file, they will all be executed by a call to piper.
+
+You can specify a configuration file with `piper -f <path to file>`.
 
 
 TODO
