@@ -2,7 +2,6 @@ package main
 
 
 import (
-    "log"
     "database/sql"
     "fmt"
 
@@ -14,20 +13,18 @@ func Extract(source DataSourceConfig, query string) (float64, error){
 
     result := 0.0
 
+    // TODO cache db connections
     db, err := sql.Open("postgres", fmt.Sprintf("user=%v dbname=%v password=%v host=%v port=%v", source.User, source.Database, source.Password, source.Host, source.Port))
 
     if err != nil {
-        log.Fatal(err)
         return result, err
     }
 
     rows, err := db.Query(query)
 
     if err != nil {
-        log.Fatal(err)
         return result, err
     }
-
 
     if rows.Next() {
         rows.Scan(&result)

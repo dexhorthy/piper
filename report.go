@@ -14,6 +14,7 @@ func Report(value float64, destination string, host string, port int) error {
         return err
     }
 
+
     log.Printf("Connected to Graphite at %v:%v", host, port)
 
     Graphite.SimpleSend(destination, strconv.FormatFloat(value, 'E', -1, 64))

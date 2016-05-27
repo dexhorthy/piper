@@ -13,6 +13,7 @@ func ExampleLoadConfig() {
     fmt.Printf("Loaded Graphite Host: %v\n", config.Graphite.Host)
     fmt.Printf("Loaded Graphite Port: %v\n", config.Graphite.Port)
 
+
     for _, pipeConfig := range config.Pipes {
         fmt.Printf("Loaded Query: %v\n", pipeConfig.Query)
         fmt.Printf("Loaded Dest: %v\n", pipeConfig.Dest)
