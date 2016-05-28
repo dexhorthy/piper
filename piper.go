@@ -68,7 +68,7 @@ func (pipe *PipeConfig) pipe(db *sql.DB, graphite *graphite.Graphite) {
 
     err = graphite.SimpleSend(pipe.Dest, strconv.FormatFloat(result, 'E', -1, 64))
 
-    log.Printf("Sent %6.2f \t%v", result, pipe.Dest)
+    log.Printf("Sent %6.2f \t->\t%v", result, pipe.Dest)
 
     if err != nil {
         log.Print(err)

@@ -19,6 +19,7 @@ We create a config file named `piper_users.yml`, with contents:
 # piper_users.yml
 ---
 source:
+  driver: postgres
   user: postgres
   database: postgres
   password: postgres
@@ -48,10 +49,7 @@ Output should look something like
 
 ```
 2016/05/24 20:23:04 Loaded config from piper_users.yml
-2016/05/24 20:23:04 Executing query: SELECT count(*) FROM users
-2016/05/24 20:23:04 Loaded value: 11
-2016/05/24 20:23:04 Connected to Graphite at localhost:2003
-2016/05/24 20:23:04 sent 11 to users.count
+2016/05/24 20:23:04 Sent 11     ->   users.count
 ```
 
 
