@@ -5,8 +5,8 @@ import (
     "log"
     "flag"
     "sync"
-	"github.com/marpaia/graphite-golang"
-	"strconv"
+    "github.com/marpaia/graphite-golang"
+    "strconv"
     "database/sql"
     "fmt"
 
@@ -33,7 +33,7 @@ func main() {
 
     db, err := sql.Open(source.Driver, fmt.Sprintf("user=%v dbname=%v password=%v host=%v port=%v", source.User, source.Database, source.Password, source.Host, source.Port))
     if err != nil {
-	    log.Fatal(err)
+        log.Fatal(err)
     }
 
 
