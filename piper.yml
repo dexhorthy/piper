@@ -1,5 +1,6 @@
 ---
 source:
+    driver: postgres
     user: postgres
     database: postgres
     password: postgres

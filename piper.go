@@ -31,7 +31,7 @@ func main() {
 
     source := config.Source
 
-    db, err := sql.Open("postgres", fmt.Sprintf("user=%v dbname=%v password=%v host=%v port=%v", source.User, source.Database, source.Password, source.Host, source.Port))
+    db, err := sql.Open(source.Driver, fmt.Sprintf("user=%v dbname=%v password=%v host=%v port=%v", source.User, source.Database, source.Password, source.Host, source.Port))
     if err != nil {
 	    log.Fatal(err)
     }

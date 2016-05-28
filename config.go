@@ -7,6 +7,7 @@ import (
 )
 
 type DataSourceConfig struct {
+    Driver string
     Host string
     Port int
     User string
