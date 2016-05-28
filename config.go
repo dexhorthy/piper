@@ -21,7 +21,7 @@ type GraphiteConfig struct {
     Port int
 }
 
-type PipeConfig struct {
+type Pipe struct {
     Query string
     Dest string
 }
@@ -29,7 +29,7 @@ type PipeConfig struct {
 type PiperConfig struct {
     Source DataSourceConfig
     Graphite GraphiteConfig
-    Pipes []PipeConfig 
+    Pipes []Pipe
 }
 
 func LoadConfig(path string) PiperConfig {

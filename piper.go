@@ -41,7 +41,7 @@ func main() {
 
     for _, pipe := range config.Pipes {
         wg.Add(1)
-        go func(pipe PipeConfig) {
+        go func(pipe Pipe) {
             defer wg.Done()
             pipe.pipe(db, Graphite)
         }(pipe)
@@ -51,7 +51,7 @@ func main() {
 
 }
 
-func (pipe *PipeConfig) pipe(db *sql.DB, graphite *graphite.Graphite) {
+func (pipe *Pipe) pipe(db *sql.DB, graphite *graphite.Graphite) {
 
     rows, err := db.Query(pipe.Query)
 
